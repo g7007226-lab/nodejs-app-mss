@@ -1,30 +1,30 @@
-node{
-
-stage('CheckOutCode'){
-git credentialsId: 'f52a7301-4cbc-4389-91fd-0e6ef69c493d', url: 'https://github.com/MithunTechnologiesDevOps/nodejs-app-mss.git'
+pipeline{
+agent any 
+options {
+  buildDiscarder logRotator(artifactDaysToKeepStr: '2', artifactNumToKeepStr: '2', daysToKeepStr: '', numToKeepStr: '2')
 }
-
-stage('Build'){
-nodejs(nodeJSInstallationName: 'nodejs22.40.0'){
-sh "npm install"
-}
-}
-
-stage('ExecuteSonarQubeReport'){
-nodejs(nodeJSInstallationName: 'nodejs22.40.0'){
-sh "npm run sonar"
+ tools { nodejs "Suji" }
+ stages {
+	stage('Checkout code') {
+	steps {
+ git credentialsId: 'e0e91656-881b-4e6c-a045-0d113dff0754',
+            url: 'https://github.com/g7007226-lab/nodejs-app-mss.git'
 }
 }
-
-/*
-stage('UploadArtifactsIntoNexus'){
-sh "npm publish"
+stage ('Building') {
+steps  {
+sh "npm install" 
+ } 
+ }
+ stage('Sonar report') {
+     steps {
+         sh "npm run sonar"
+     }
+ }
+ stage('Deploying artifacts') {
+     steps { 
+         sh "npm run start &"
+ }
+ }
 }
-*/
-
-stage('RunNodeJsApp'){
-sh "npm start"
 }
-
-}
-
