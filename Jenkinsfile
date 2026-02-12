@@ -1,7 +1,7 @@
 pipeline{
 agent any 
 options {
-  buildDiscarder logRotator(artifactDaysToKeepStr: '2', artifactNumToKeepStr: '2', daysToKeepStr: '', numToKeepStr: '2')
+  buildDiscarder logRotator(artifactDaysToKeepStr: '2', artifactNumToKeepStr: '2', daysToKeepStr: '2', numToKeepStr: '2')
 }
  tools { nodejs "Suji" }
  stages {
