@@ -4,7 +4,7 @@
   "description": "This Project explains all Node JS examples",
   "main": "app.js",
   "publishConfig": {
-    "registry": "http://18.130.99.18:9980/mithuntechnologies/repository/nodejsmithuntechnologies/"
+    "registry": "http://54.234.151.24:8081/repository/snapshot-nodeJS/"
   },
   "scripts": {
     "server": "http-server -c-1 -p 9999",
